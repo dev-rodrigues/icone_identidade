@@ -7,6 +7,7 @@ defmodule Identidade do
     input
     |> hash_input
     |> criar_cor
+    |> criar_tabela
   end
 
   def hash_input(input) do
@@ -18,5 +19,10 @@ defmodule Identidade do
 
   def criar_cor(%Identidade.Imagem{hex: [r,g,b | _tail]} = imagem) do
     %Identidade.Imagem{imagem | color: {r,g,b} }
+  end
+
+  def criar_tabela(%Identidade.Imagem{hex: hex} = imagem) do
+    hex
+    |> Enum.chunk(3)
   end
 end
