@@ -6,6 +6,7 @@ defmodule Identidade do
   def main(input) do
     input
     |> hash_input
+    |> criar_cor
   end
 
   def hash_input(input) do
@@ -13,5 +14,11 @@ defmodule Identidade do
     |> :binary.bin_to_list
 
     %Identidade.Imagem{hex: hex}
+  end
+
+  def criar_cor(imagem) do
+    %Identidade.Imagem{hex: hex_list} = imagem
+    [r,g,b | _tail] = hex_list
+    [r,g,b]
   end
 end
