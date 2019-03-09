@@ -3,16 +3,13 @@ defmodule Identidade do
   Documentation for Identidade.
   """
 
-  @doc """
-  Hello world.
+  def main(input) do
+    input
+    |> hash_input
+  end
 
-  ## Examples
-
-      iex> Identidade.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def hash_input(input) do
+    :crypto.hash(:md5, input)
+    |> :binary.bin_to_list
   end
 end
