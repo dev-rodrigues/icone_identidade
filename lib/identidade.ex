@@ -16,8 +16,7 @@ defmodule Identidade do
     %Identidade.Imagem{hex: hex}
   end
 
-  def criar_cor(imagem) do
-    %Identidade.Imagem{hex: [r,g,b | _tail]} = imagem
+  def criar_cor(%Identidade.Imagem{hex: [r,g,b | _tail]} = imagem) do
     [r,g,b]
   end
 end
