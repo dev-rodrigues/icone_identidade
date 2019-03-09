@@ -9,7 +9,9 @@ defmodule Identidade do
   end
 
   def hash_input(input) do
-    :crypto.hash(:md5, input)
+    hex = :crypto.hash(:md5, input)
     |> :binary.bin_to_list
+
+    %Identidade.Imagem{hex: hex}
   end
 end
