@@ -25,4 +25,8 @@ defmodule Identidade do
     hex
     |> Enum.chunk(3)
   end
+
+  def espelhar(linha) do
+    
+  end
 end
