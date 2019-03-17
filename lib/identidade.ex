@@ -24,9 +24,11 @@ defmodule Identidade do
   def criar_tabela(%Identidade.Imagem{hex: hex} = imagem) do
     hex
     |> Enum.chunk(3)
+    |> Enum.map(&espelhar/1)
   end
 
   def espelhar(linha) do
-    
+    [pri, sec, _tail] = linha
+    linha ++ [sec, pri]
   end
 end
