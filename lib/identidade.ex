@@ -1,8 +1,14 @@
 defmodule Identidade do
   @moduledoc """
-  Documentation for Identidade.
+  Módulo para criar um icone de identidade, ao passar uma `String qualquer`
   """
-
+ 
+  @doc """
+    Ao passar um valor para `input` gera uma imagem e retorna `:ok`
+    ##Exemplo
+    iex> Identidade.main("Gerar imagem")
+    :ok
+  """
   def main(input) do
     input
     |> hash_input
