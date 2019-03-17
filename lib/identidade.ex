@@ -10,6 +10,7 @@ defmodule Identidade do
     |> criar_tabela
     |> remover_impar
     |> constroi_pixel
+    |> desenhar
   end
 
   def hash_input(input) do
@@ -46,8 +47,16 @@ defmodule Identidade do
       inf_direita = {h + 50, v + 50}
       {top_esquerda, inf_direita}
     end
-
     %Identidade.Imagem{imagem | pixel_map: pixel_map}
+  end
+
+  def desenhar(%Identidade.Imagem{cor: cor, pixel_map: pixel_map}) do
+    imagem = :egd.create(250, 250)
+    preencha = :egd.color(cor)
+    Enum.each pixel_map, fn(start, stop) -> 
+      :egd.filleRectangle(imagem, start, stop, preencha)
+    end
+    :egd.render(imagem)
   end
 
   def espelhar(linha) do
