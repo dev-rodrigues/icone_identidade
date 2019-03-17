@@ -11,6 +11,7 @@ defmodule Identidade do
     |> remover_impar
     |> constroi_pixel
     |> desenhar
+    |> salvar(input)
   end
 
   def hash_input(input) do
@@ -50,13 +51,18 @@ defmodule Identidade do
     %Identidade.Imagem{imagem | pixel_map: pixel_map}
   end
 
-  def desenhar(%Identidade.Imagem{cor: cor, pixel_map: pixel_map}) do
+  def desenhar(%Identidade.Imagem{color: cor, pixel_map: pixel_map}) do
     imagem = :egd.create(250, 250)
     preencha = :egd.color(cor)
-    Enum.each pixel_map, fn(start, stop) -> 
-      :egd.filleRectangle(imagem, start, stop, preencha)
+    
+    Enum.each pixel_map, fn{start, stop} -> 
+      :egd.filledRectangle(imagem, start, stop, preencha)
     end
     :egd.render(imagem)
+  end
+
+  def salvar(imagem, input) do
+    File.write("#{input}.png", imagem)
   end
 
   def espelhar(linha) do
